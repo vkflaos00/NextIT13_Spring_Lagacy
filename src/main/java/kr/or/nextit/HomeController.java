@@ -33,6 +33,15 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		/*
+		 * request.setAtrribute("serverTime", formattedDate);
+		 * 스프링에서는 request.setAtrribute() 대신에 model.addAttribute()를 사용함
+		 * 근데 request가 더 넓은 범위로 사용 가능함
+		 * 예를들면 request는 호출한 view페이지에 include한 페이지에서도 사용가능
+		 * 
+		 * 
+		 * */
+		
 		return "home";
 	}
 	

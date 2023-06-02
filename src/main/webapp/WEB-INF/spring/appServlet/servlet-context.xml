@@ -10,12 +10,28 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- mvc:annotation-driven
+		사용자 요청 url을 @Controller로 보내서 처리하기 위해 필요한 HandlerMapping과
+		HandlerAdapter를 Bean으로 등록해준다.
+		HandlerMapping : HTTP 요청정보를 이용해서 컨트롤러를 찾아주는 기능을 함
+		 		(사용자 요청 url과 매칭되는 컨트롤러를 찾아주는 일을 함)
+		HandlerAdapter : HandlerMapping을 통해서 찾은 컨트롤러를 직접 실행하는 기능을 함
+				또한 컨트롤러(@Controller)에서 @RequestMapping과 같은 어노테이션을 통해 해당 기능을 사용할 수 있게 처리함
+		 -->
+	
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- resources는 해당 자원에 대한 경로를 처리
+	   			(현재 web.xml에서 모든 요청("/")을 서블릿이 처리하므로 css나 image같은
+	   			 서블릿이 처리 하지 않아도 되는 것들에 대해 따로 패스를 지정해주어야 함 -->
+	
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	
+	<!-- InternalResourceViewReserver는 뷰 리저버이며 prefix와 suffix를 사용하여 
+			경로를 편히 작성할 수 있게 해 줌 -->	
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
